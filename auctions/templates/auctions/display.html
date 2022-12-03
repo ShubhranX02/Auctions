@@ -22,10 +22,10 @@
 
         {% if bids != 0 %}
             {% if listing.highest_bidder == request.user %}
-                {% if not auction_ended %}
-                    <h3>You are winning this auction!</h3>
+                {% if not listing.auction_ended %}
+                    <h3 style="color: rgb(4, 206, 4);">You are winning this auction!</h3>
                 {% else %}
-                    <h3>You have won this auction!</h3>
+                    <h3 style="color: rgb(5, 197, 5);">You have won this auction!</h3>
                 {% endif %}
             {% endif %}
         {% endif %}
@@ -52,12 +52,14 @@
             <h2>Bid</h2>
             {% if request.user != listing.lister %}
                 <form method="POST" action="{% url 'bid' listing.id %}" id="bid-area">
+                    {% csrf_token %}
                     <input type="number" name="bid" placeholder="Bid Amount" class="bid-amount" min="{{ listing.highest_bid_plusone }}">
                     <input type="submit" value="Bid" class="bid-button">
                 </form>
             {% else %}
                 <h3>You can't bid on your own auction!</h3>
                 <form action="{% url 'display' listing.id %}" method="POST">
+                    {% csrf_token %}
                     <input type="submit" value="End Auction" class="end">
                 </form>
             {% endif %}
