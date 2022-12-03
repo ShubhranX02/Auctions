@@ -1,0 +1,136 @@
+.display-listing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.display-listing h1 {
+    color: crimson;
+    font-size: 50px;
+}
+
+.display-listing h2 {
+    color: crimson;
+}
+
+.display-listing h6 {
+    color: rgb(243, 63, 99);
+}
+
+.display-listing img {
+    margin: 20px;
+    width: auto;
+}
+
+.description {
+    color: coral;
+    font-size: larger;
+    text-align: center;
+    width: 50%;
+    margin: 10px;
+}
+
+.watchlist-button {
+    border: none;
+    border-radius: 25px;
+    background-color: crimson;
+    color: white;
+    margin-left: 10px;
+    padding: 20px;
+    margin-top: 30px;
+    width: 250px;
+    transition: 0.5s;
+}
+
+.watchlist-button:hover {
+    background-color: rgb(169, 18, 48);
+    transition: 0.5s;
+}
+
+.bid-amount {
+    padding: 10px;
+    text-align: center;
+    width: 300px;
+    height: 100px;
+    font-size: 30px;
+    margin: 20px;
+    border-radius: 10px;
+    border: 1px solid crimson;
+}
+
+.bid-button {
+    margin: 10px;
+    background-color: crimson;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    width: 50%;
+}
+
+#bid-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.bid-button:hover {
+    background-color: rgb(169, 16, 47);
+}
+
+.end {
+    background-color: black;
+    border: none;
+    border-radius: 10px;
+    color: yellow;
+    margin: 20px;
+    padding: 10px;
+    width: 200px;
+}
+
+#comments-area {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.comment {
+    width: 90%;
+    box-shadow: 0px 0px 5px 1px lightgray;
+    margin: 15px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+#comment-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.comment-input {
+    width: 600px;
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+    margin-top: 20px;
+    border: 2px solid coral;
+    border-radius: 10px;
+}
+
+.comment-submit {
+    margin: 10px;
+    margin-bottom: 20px;
+    background-color: crimson;
+    border: none;
+    padding: 10px;
+    width: 200px;
+    color: white;
+    border-radius: 10px;
+}

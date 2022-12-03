@@ -1,0 +1,41 @@
+#category-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#heading {
+    text-align: center;
+    color: crimson;
+    margin-bottom: 20px;
+}
+
+#category-container a {
+    color: white;
+    text-decoration: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.category {
+    width: 50%;
+    height: 200px;
+    background-image: linear-gradient(to right, lightcoral, coral, lightcoral);
+    color: white;
+    text-align: center;
+    margin: 25px;
+    border-radius: 20px;
+    padding: 50px;
+    transition: 0.75s;
+    box-shadow: 0px 0px 10px 3px lightgray;
+}
+
+.category:hover {
+    width: 55%;
+    height: 215px;
+    transition: 0.75s;
+}

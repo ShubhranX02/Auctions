@@ -1,0 +1,51 @@
+{% extends 'auctions/layout.html' %}
+{% load static %}
+
+{% block title %}{{ category }}{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'auctions/styles-view_category2.css' %}">
+{% endblock %}
+
+{% block body %}
+    <h1 class="heading">{{ category }}</h1>
+
+    <hr class="rule">
+
+    <div id="listing-area">
+        {% for listing in listings %}
+
+        <a href="{% url 'display' listing.id %}">
+            <div class="listing">
+                <div class="img-div">
+                    <img src="{{ listing.image_url }}" alt="listing-image">
+                </div>
+                <div class="details-div">
+                    <h1>{{ listing.title }}</h1>
+                    <h3><strong>Price:</strong> ${{ listing.highest_bid }}</h3>
+                    
+                    {% if listing not in watchlist %}
+                        <form method="POST" action="{% url 'add_to_watchlist' %}">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{ listing.id }}" name="listing-id">
+                            <input type="hidden" value="add" name="fate">
+                            <input type="submit" value="Add To Watchlist" class="watchlist-button">
+                        </form>
+                    {% else %}
+                        <form method="POST" action="{% url 'add_to_watchlist' %}">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{ listing.id }}" name="listing-id">
+                            <input type="hidden" value="remove" name="fate">
+                            <input type="submit" value="Remove From Watchlist" class="watchlist-button">
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        </a>
+
+        {% empty %}
+            <h2 class="failure">No Listings.</h2>
+
+        {% endfor %}
+    </div>
+{% endblock %}

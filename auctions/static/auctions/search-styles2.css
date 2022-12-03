@@ -1,0 +1,101 @@
+#listing-area {
+    display: flex;
+    flex-direction: column;
+}
+
+.heading {
+    color: crimson;
+    text-align: center;
+    margin-left: 10px;
+}
+
+.listing {
+    background-color: white;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    box-shadow: 0px 0px 10px 1px lightgrey;
+    border-radius: 20px;
+    height: 300px;
+    padding: 30px;
+    margin: 10px;
+    transition: 0.5s;
+}
+
+.listing img {
+    height: 250px;
+}
+
+.listing h1 {
+    padding: 10px;
+    color: black;
+}
+
+.img-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.details-div h3 {
+    margin-left: 15px;
+    color: black;
+}
+
+.listing div {
+    color: black;
+    text-decoration: none;
+}
+
+.listing:hover {
+    box-shadow: 0px 0px 20px 2px rgb(167, 167, 167);
+    transition: 0.5s;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.watchlist-button {
+    border: none;
+    border-radius: 25px;
+    background-color: crimson;
+    color: white;
+    margin-left: 10px;
+    padding: 15px;
+    margin-top: 30px;
+    transition: 0.5s;
+}
+
+.watchlist-button:hover {
+    background-color: lightcoral;
+    transition: 0.5s;
+}
+
+#search-input {
+    width: 600px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid lightcoral;
+}
+
+#search-submit {
+    background-color: crimson;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    padding: 10px;
+    width: 200px;
+}
+
+.search-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-area * {
+    margin: 10px;
+}

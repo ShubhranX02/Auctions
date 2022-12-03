@@ -1,0 +1,94 @@
+{% extends 'auctions/layout.html' %}
+{% load static %}
+
+{% block title %}{{ listing.title }}{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'auctions/styles-display.css' %}">
+{% endblock %}
+
+{% block body %}
+    <main class="display-listing">
+        <h1>{{ listing.title }}</h1>
+
+        <hr class="rule" width="100%">
+
+        <img src="{{ listing.image_url }}">
+
+        <hr class="rule" width="100%">
+
+        <h2><strong>Current Price:</strong> ${{ current_price }}</h2>
+        <h6>({{ bids }} Bid{% if bids != 1 %}s{% endif %})</h6>
+
+        {% if bids != 0 %}
+            {% if listing.highest_bidder == request.user %}
+                {% if not auction_ended %}
+                    <h3>You are winning this auction!</h3>
+                {% else %}
+                    <h3>You have won this auction!</h3>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+
+        <p class="description">{{ listing.description }}</p>
+
+        <form method="POST" action="{% url 'add_to_watchlist' %}">
+            {% csrf_token %}
+            <input type="hidden" value="{{ listing.id }}" name="listing-id">
+
+            {% if listing not in watchlist %}
+                <input type="hidden" value="add" name="fate">
+                <input type="submit" value="Add To Watchlist" class="watchlist-button">
+            {% else %}
+                <input type="hidden" value="remove" name="fate">
+                <input type="submit" value="Remove From Watchlist" class="watchlist-button">
+            {% endif %}
+        </form>
+
+        <hr class="rule" width="100%">
+
+
+        {% if not listing.auction_ended %}
+            <h2>Bid</h2>
+            {% if request.user != listing.lister %}
+                <form method="POST" action="{% url 'bid' listing.id %}" id="bid-area">
+                    <input type="number" name="bid" placeholder="Bid Amount" class="bid-amount" min="{{ listing.highest_bid_plusone }}">
+                    <input type="submit" value="Bid" class="bid-button">
+                </form>
+            {% else %}
+                <h3>You can't bid on your own auction!</h3>
+                <form action="{% url 'display' listing.id %}" method="POST">
+                    <input type="submit" value="End Auction" class="end">
+                </form>
+            {% endif %}
+        {% else %}
+            <h1>Auction has ended.</h1>
+            {% if listing.highest_bidder != 0 %}
+                <h1>Winner: {{ listing.highest_bidder.username }} for {{ listing.highest_bid }}</h1>
+            {% else %}
+                <h1 style="color: black;">There were no bids.</h1>
+            {% endif %}
+        {% endif %}
+
+        <hr class="rule" width="100%">
+
+        <h2>Comments</h2>
+        
+        <form action="{% url 'comment' listing.id %}" method="POST" id="comment-area">
+            {% csrf_token %}
+            <input type="text" name="comment" placeholder="Comment" class="comment-input">
+            <input type="submit" value="Comment" class="comment-submit">
+        </form>
+
+        <div id="comments-area">
+            {% for comment in comments %}
+                <div class="comment">
+                    <h5 style="font-weight: 600;">{{ comment.commentor }}</h5>
+                    <p>{{ comment.comment }}</p>
+                </div>
+            {% empty %}
+                <h4>No Comments</h4>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}

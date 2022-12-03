@@ -1,0 +1,23 @@
+{% extends 'auctions/layout.html' %}
+{% load static %}
+
+{% block title %}
+    Create A Listing
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'auctions/create-styles3.css' %}">
+{% endblock %}
+
+{% block body %}
+    <h1 id="heading">Create A Listing</h1>
+
+    <hr class="rule">
+
+    <form action="{% url 'create' %}" method="POST" id="create-form">
+        {% csrf_token %}
+        {{ form }}
+        
+        <input type="submit" value="Create" id="create">
+    </form>
+{% endblock %}
